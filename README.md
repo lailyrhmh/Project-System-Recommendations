@@ -50,8 +50,8 @@ Berkembangnya layanan film _streaming_ menyebabkan persaingan antara layanan pen
   <br>Dalam sistem rekomendasi ini, fitur yang digunakan untuk pengembangan model _machine learning_ yaitu `type`, `title`, `listed_in` dan `description`
 
 ### Exploratory Data Analysis
-<br> Pada tahapan ini dilakukan pengecekan informasi data kemudian _missing value_ dan duplikat data. Data yang digunakan todak memiliki _misiing value_ dan juga duplikat data sehingga dilanjutkan ketahap analisis distribusi data.
-- **Distribusi data _type_ Movie dan TV Show**
+<br> Pada tahapan ini dilakukan pengecekan informasi data kemudian _missing value_ dan duplikat data. Data yang digunakan todak memiliki _missing value_ dan juga duplikat data sehingga dilanjutkan ketahap analisis distribusi data.
+- **Distribusi data `type` Movie dan TV Show**
   <br>Data menunjukan Movie dengan jumlah 69.6% dan TV Show dengan jumlah 30.4% dari seluruh data
   ![image](https://user-images.githubusercontent.com/91611703/191995037-7c0470f4-ba47-434b-9401-3193642c9b6a.png)
 
@@ -59,14 +59,18 @@ Berkembangnya layanan film _streaming_ menyebabkan persaingan antara layanan pen
   <br>Data menunjukan genre terbanyak yaitu ada pada genre International Movies kemudian yang ke-dua yaitu Dramas dst.
   ![image](https://user-images.githubusercontent.com/91611703/191995085-1fd287d6-2769-42a7-8b90-7d91d5af9e54.png)
 
-- **Menenmukan kata populer pada _description_**
+- **Menenmukan kata populer pada `description`**
   <br>Data menunjukan Kata populer teratas yaitu life dan find dst.
   ![image](https://user-images.githubusercontent.com/91611703/191995113-e4534a22-4d67-48de-a11c-c2f4f8dcb87a.png)
 
 
 ## Data Preparation
 ---
-
+- **Membagi data berdasarkan `type`**
+  <br>Dataframe baru dibuat berdasarkan dengan dua `type` yaitu Movie dan TV Show untuk melakukan permodelam _machine learning_ berdasarkan tipe.
+  
+- **Stop Word dan Lemmatization**
+  <br>Pada _feature_ `description` terdapat banyak kata seperti “the”, “a”, “an”, “in” yang dapat dihilangkan atau diabaikan menggunakan _stop word_ kemudian penggunaan _lemmatization_ pada preproses data untuk mengelompokkan kata kedalam bentuk dasar ataupun kata yang memiliki arti yang sama sehigga dapat dianalisis menjadi satu iten kata.
 
 
 ## Modeling
