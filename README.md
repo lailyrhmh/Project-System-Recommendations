@@ -71,10 +71,30 @@ Berkembangnya layanan film _streaming_ menyebabkan persaingan antara layanan pen
   
 - **Stop Word dan Lemmatization**
   <br>Pada _feature_ `description` terdapat banyak kata seperti “the”, “a”, “an”, “in” yang dapat dihilangkan atau diabaikan menggunakan _stop word_ kemudian penggunaan _lemmatization_ pada preproses data untuk mengelompokkan kata kedalam bentuk dasar ataupun kata yang memiliki arti yang sama sehigga dapat dianalisis menjadi satu iten kata.
+  
+- **Kolom baru untuk proses modelling**
+  <br>Setelah dilakukan preproses pada kata yang ada pada `description`, tahap selanjutnya yaitu menggabungkan kata yang ada pada `listed_in` dan `description` kedalam satu kolom baru yaitu `text` untuk selanjutnya dipakai dalam perhitungan model _content-based filtering_.
 
 
 ## Modeling
 ---
+### Content-Based Filtering
+
+- **Metode Rekayasa Fitur**
+  <br>Pada model _content-based filteirng_ ini, akan dilakukan menggunakan TF-IDF untuk menemukan representasi fitur penting dari setiap konten video netflix. Fungsi yang digunakan yaitu TfidfVectorizer dari library scikit-learn. Dalam sistem rekomendasi ini juga digunakan parameter `min_df=0.01` untuk menghilangkan term/istilah yang terlalu jarang muncul dengan hitungan minimal 1% term muncul yang akan diproses sebagai fitur.
+  
+- **Fit dan Tranform ke Dalam Matrix**
+  <br>Setelah menemukan representasi fitur, dilakuakn fit dan transform pada data tipe Movie dan TV show dengan hasil matrx sebagai berikut:
+  * Matrix Movie
+    <br>`(6131, 285)`
+    <br>Artinya data movie sebanyak 6131 baris data dengan 285 fitur penting dari `genre` dan `description`
+    
+  * Matrix TV Show
+    <br>`(2676, 302)`
+    <br>Artinya data movie sebanyak 2676 baris data dengan 302 fitur penting dari `genre` dan `description`
+    
+- **Cosine Similarity**
+  <br>Untuk menghitung tingkat kesamaan dari fitur digunakan teknik cosine similarity dengan fungsi cosine_similarity() dari library sklearn. Setelah dihitung, maka akan dibuat dataframe baru berdasarkan cosine similarity untuk selanjutnya dapat digunakan dalam sistem rekomendasi.
 
 
 ## Evaluation
