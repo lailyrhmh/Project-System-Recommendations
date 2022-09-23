@@ -30,7 +30,24 @@ Berkembangnya layanan film _streaming_ menyebabkan persaingan antara layanan pen
 
 ## Data Understanding
 ---
+- **Informasi dataset**
+  <br>Dataset yang digunakan pada proyek ini adalah dataset Netflix Movie and TV Show yang dapat diunduh melalui tautan [berikut ini.](https://www.kaggle.com/datasets/shivamb/netflix-shows?datasetId=434238&searchQuery=recom)
+  <br>Dataset berjumlah 8807 baris data dan memiliki 12 _feature_ yaitu:
+    *   `show_id` : id konten netflix
+    *   `type` : tipe konten
+    *   `title` : judul konten
+    *   `director` : nama _director_ konten
+    *   `cast` : nama pemain atau _cast_
+    *   `country` : asal negara dari konten
+    *   `date_added` : tanggal ditambahkan ke-netflix
+    *   `release_year` : tanggal rilis
+    *   `rating` : rating konten
+    *   `duration_ms` : dursi konten
+    *   `listed_in` : genre konten
+    *   `description` : deskripsi konten
 
+- **_Feature_ yang digunakan**
+  <br>Dalam sistem rekomendasi ini, fitur yang digunakan untuk pengembangan model _machine learning_ yaitu `type`, `title`, `listed_in` dan `description`
 
 ## Data Preparation
 ---
