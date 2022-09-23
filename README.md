@@ -95,7 +95,95 @@ Berkembangnya layanan film _streaming_ menyebabkan persaingan antara layanan pen
     
 - **Cosine Similarity**
   <br>Untuk menghitung tingkat kesamaan dari fitur digunakan teknik cosine similarity dengan fungsi cosine_similarity() dari library sklearn. Setelah dihitung, maka akan dibuat dataframe baru berdasarkan cosine similarity untuk selanjutnya dapat digunakan dalam sistem rekomendasi.
+  * Cosine Similarity Movie
+    ```html
+    |                 title | Ghost Lab | This Is the Life | Lizzie Borden Took an Ax | 7 Khoon Maaf | We Are Family |
+    |                 title |           |                  |                          |              |               |
+    |----------------------:|----------:|-----------------:|-------------------------:|-------------:|--------------:|
+    |      Ekşi Elmalar     |  0.131873 |         0.133046 |                 0.143831 |     0.158522 |      0.180019 |
+    |       New Money       |  0.115808 |         0.056238 |                 0.058831 |     0.117822 |      0.099081 |
+    | The Edge of Democracy |  0.179247 |         0.174660 |                 0.119083 |     0.105048 |      0.117550 |
+    |      Dolphin Kick     |  0.102474 |         0.045805 |                 0.056889 |     0.026914 |      0.034067 |
+    |  Garfield's Pet Force |  0.021678 |         0.117604 |                 0.104707 |     0.074934 |      0.082060 |
+    |        Chaahat        |  0.107094 |         0.049598 |                 0.101311 |     0.211924 |      0.054877 |
+    |     Organize Isler    |  0.081284 |         0.040430 |                 0.033914 |     0.153904 |      0.025511 |
+    |          Gigi         |  0.026737 |         0.387760 |                 0.032757 |     0.038089 |      0.100149 |
+    |        Banyuki        |  0.125369 |         0.067827 |                 0.358346 |     0.092482 |      0.057023 |
+    |          Zion         |  0.061115 |         0.103701 |                 0.149083 |     0.086541 |      0.035696 |
+    ```
+    <br>Nilai cosine similarity yang semakin besar, menunjukkan bahwa kemiripan atau kesamaan antar movie semakin besar. Seperti movie berjudul This Is the Life dan Gigi yang memiliki nilai kesamaan 0.387760.
 
+  * Cosine Similarity TV Show
+    ```html
+    |                           title | Trio and a Bed | Korean Pork Belly Rhapsody |            Ken Burns Presents: College Behind Bars:  |  Hasmukh | Seven and Me |
+    |                                 |                |                            | A Film by Lynn Novick and Produced by Sarah Botstein |          |              |
+    |                           title |                |                            |                                                      |          |              |
+    |--------------------------------:|---------------:|---------------------------:|-----------------------------------------------------:|---------:|-------------:|
+    |          The Last O.G.          |       0.081342 |                   0.035724 |                                             0.000000 | 0.136928 |     0.028505 |
+    |          Meteor Garden          |       0.192441 |                   0.230628 |                                             0.000000 | 0.111326 |     0.224565 |
+    |           Brotherhood           |       0.186350 |                   0.155229 |                                             0.023458 | 0.122889 |     0.213032 |
+    |           Saint Seiya           |       0.078478 |                   0.119882 |                                             0.021670 | 0.041787 |     0.150097 |
+    |        Revolutionary Love       |       0.249150 |                   0.239510 |                                             0.021028 | 0.130760 |     0.067510 |
+    |         Turn Up Charlie         |       0.099665 |                   0.069958 |                                             0.036709 | 0.123601 |     0.054028 |
+    |          Civilizations          |       0.136259 |                   0.108695 |                                             0.166118 | 0.043338 |     0.041353 |
+    |            Cocomelon            |       0.056926 |                   0.089915 |                                             0.050711 | 0.019352 |     0.051701 |
+    | Power Rangers Dino Super Charge |       0.179629 |                   0.135612 |                                             0.023081 | 0.072706 |     0.134800 |
+    |                H                |       0.330259 |                   0.137654 |                                             0.000000 | 0.126051 |     0.120530 |
+    ```
+    <br>Nilai cosine similarity yang semakin besar, menunjukkan bahwa kemiripan atau kesamaan antar TV Show semakin besar. Seperti TV Show berjudul Trio and a Bed dan Revolitionary Love yang memiliki nilai kesamaan 0.387760.
+
+- **Uji Coba Sistem Rekomendasi**
+  <br>Sistem menggunakan dataframe baru yang berisi cosine similarity antar konten video untuk kemudian dihitung kemiripiannya dan dicetak hasil _top 10_ dari konten video netflix dengan kemiripan paling tinggi. Berikut hasil dari uji coba sistem:
+  * Rekomendasi Movie
+    <br>Cek data movie
+    ```html
+    | title |              listed_in              |                        description                        |                                                                                         text                                                                                        |
+    |:-----:|:-----------------------------------:|:---------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+    | Bugs  | Documentaries, International Movies | A willing team of chef and researcher go on a gastronomic | Documentaries, International Movies A willing team of chef and researcher go on a gastronomic adventure around the globe to weigh the benefit of using bug as a future food source. |
+    |       |                                     |                                                           |                                                                                                                                                                                     |
+    
+    ```
+    
+    <br>Hasil Rekomendasi
+    ```html
+    | index |         title         |                        listed_in                        |                                                                       description                                                                      |
+    |:-----:|:---------------------:|:-------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------:|
+    |     0 | She Did That          | Documentaries                                           | Go inside the life of extraordinary, black female entrepreneur as they discus building legacy and pioneering a new future for the next generation.     |
+    |     1 | Chasing Coral         | Documentaries                                           | Divers, scientist and photographer around the world mount an epic underwater campaign to document the disappearance of coral reefs.                    |
+    |     2 | The Ivory Game        | Documentaries                                           | Filmmakers infiltrate the corrupt global network of ivory trafficking, exposing poacher and dealer as African elephant edge closer to extinction.      |
+    |     3 | Operation Chromite    | Action & Adventure, Dramas, International Movies        | To pave the way for a major amphibious invasion, a team of South Korean spy go behind enemy line to steal a map of North Korean coastal defenses.      |
+    |     4 | The Tour              | Comedies, Documentaries, International Movies           | Miloš Knor brings comedian Lukáš Pavlásek, Tomáš Matonoha, Ester Kočičková, Michal Kavalčík and Richard Nedvěd on a tour around the Czech Republic.    |
+    |     5 | Bitcoin Heist         | Action & Adventure, Comedies, International Movies      | A unconventional, efficient Interpol special agent go rogue and assembles a team of thief to catch a shadowy hacker called "The Ghost."                |
+    |     6 | La Gran Ilusión       | International Movies                                    | Known as "El Mago Pop," illusionist Antonio Díaz shock and awe celebrity and bystander around the world with his mind-blowing performances.            |
+    |     7 | Addicted to Life      | Action & Adventure, Documentaries, International Movies | Chasing extreme challenges, athletic daredevil test their limit in various environment from giant wave to snowy slope around the world.                |
+    |     8 | Chappaquiddick        | Dramas                                                  | Senator Ted Kennedy watch his future unravel in the wake of an infamous car crash as family and ally vie to protect his reputation.                    |
+    |     9 | Madness in the Desert | Documentaries, International Movies                     | The story of making "Lagaan," one of the millennium's seminal Indian films, is told from the point of view of production team member Satyajit Bhatkal. |
+    ```
+    
+  * Rekomendasi TV Show
+    <br>Cek data TV Show
+    ```html
+    |   title  |         listed_in         |                                                           description                                                          |                                                                           text                                                                           |
+    |:--------:|:-------------------------:|:------------------------------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------:|
+    | Cocomong | Kids' TV, Korean TV Shows | What's in your fridge? In sunny Refrigerator Land, everyday ingredient transform into animal friend who love a good adventure. | Kids' TV, Korean TV Shows What's in your fridge? In sunny Refrigerator Land, everyday ingredient transform into animal friend who love a good adventure. |
+    |          |                           |                                                                                                                                |                                                                                                                                                          |
+    ```
+    
+    <br>Hasil Rekomendasi TV Show
+    ```html
+    | index |                 title                |                            listed_in                           |                                                                      description                                                                      |
+    |:-----:|:------------------------------------:|:--------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------:|
+    |     0 | Resurrection: Ertugrul               | International TV Shows, TV Action & Adventure, TV Dramas       | When a good deed unwittingly endangers his clan, a 13th-century Turkish warrior agrees to fight a sultan's enemy in exchange for new tribal land.     |
+    |     1 | Miniforce                            | Kids' TV, Korean TV Shows                                      | Four animal superheroes called the Miniforce transform into robot to protect small and defenseless creature from the hand of scheming villains.       |
+    |     2 | Twirlywoos                           | British TV Shows, Kids' TV                                     | The colorful and curious family of Twirlywoos bounce around their boat and visit new places, turning learning into adventure wherever they land.      |
+    |     3 | Vagabond                             | International TV Shows, Korean TV Shows, TV Action & Adventure | When his nephew dy in a plane crash, stunt man Cha Dal-geon resolve to find out what happened, with the help of covert operative Go Hae-ri.           |
+    |     4 | Crash Landing on You                 | International TV Shows, Korean TV Shows, Romantic TV Shows     | A paragliding mishap drop a South Korean heiress in North Korea – and into the life of an army officer, who decides he will help her hide.            |
+    |     5 | Arthdal Chronicles                   | International TV Shows, Korean TV Shows, TV Action & Adventure | In a mythical land called Arth, the inhabitant of the ancient city of Arthdal and its surrounding region vie for power as they build a new society.   |
+    |     6 | The Epic Tales of Captain Underpants | Kids' TV, TV Comedies                                          | Fourth-grade friend George and Harold have a shared love of prank and comic book – and turning their principal into an undies-wearing superhero.      |
+    |     7 | Buddy Thunderstruck                  | Kids' TV, TV Comedies                                          | Follow the outrageous, high-octane adventure of Buddy Thunderstruck, a truck-racing dog who brings gut and good time to the town of Greasepit.        |
+    |     8 | YooHoo to the Rescue                 | Kids' TV, Korean TV Shows                                      | In a series of magical missions, quick-witted YooHoo and his can-do crew travel the globe to help animal in need.                                     |
+    |     9 | Octonauts: Above & Beyond            | British TV Shows, Kids' TV                                     | The Octonauts expand their exploration beyond the sea — and onto land! With new ride and new friends, they'll protect any habitat and animal at risk. |
+    ```
 
 ## Evaluation
 ---
