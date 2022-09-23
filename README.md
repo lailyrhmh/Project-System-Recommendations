@@ -4,6 +4,7 @@
 ## Project Overview
 ---
 Salah satu industri budaya yang secara global memiliki pasar yang luas adalah industry perfilman. Pertumbuhan industri perfilman yang menurun akibat terjadinya pandemi terutama pada sektor distribusi melalui bioskop. Hal ini menyebabkan beralihnya sector distribusi yang kemudian beralih untuk menggunakan layanan film _streaming_. 
+
 Berkembangnya layanan film _streaming_ menyebabkan persaingan antara layanan penyedia _streaming_ video _online_ yang semakin ketat. Berkembangnya layanan ini selaras dengan banyaknya jumlah produksi film, mulai dari berbagai genre, alur cerita maupun tema film. Hal ini dapat dimanfaatkan untuk pengoptimalan distribusi film kepada calon pengguna berdasarkan preferensi yaitu dengan dibuatnya sistem rekomendasi. 
 
 
@@ -12,10 +13,19 @@ Berkembangnya layanan film _streaming_ menyebabkan persaingan antara layanan pen
 ---
 
 ### Problem Statement
+* Bagaimana cara membangun model _machine learning_ untuk merekomendasikan konten netflix yang mungkin serupa dengan konten yang dicari berdasarkan tipe?
+* Bagaimana cara membangun model _machine learning content-based filtering_ menggunakan genre dan diskripsi konten?
+
 
 ### Goal
+* Membangun model _machine learning_ untuk merekomendasikan konten berdasarkan tipe Movie atau TV Show.
+* Membangun model _machine learning content-based filtering_ menggunakan genre dan deskripsi konten.
+
 
 ### Solution
+* Melakukan pembagian data berdasarkan tipe konten sebelum melakukan depelopment model _machine learning_.
+* Mem-preproses data dengan baik kemudian membangun model _content-based filtering_ menggunakan tfidf vectorizer dan cosine similarity.
+
 
 
 ## Data Understanding
