@@ -144,7 +144,7 @@ Berkembangnya layanan film _streaming_ menyebabkan persaingan antara layanan pen
     
     ```
     
-    <br>Hasil Rekomendasi
+    <br>Hasil Rekomendasi Movie
     ```html
     | index |         title         |                        listed_in                        |                                                                       description                                                                      |
     |:-----:|:---------------------:|:-------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------:|
@@ -187,7 +187,66 @@ Berkembangnya layanan film _streaming_ menyebabkan persaingan antara layanan pen
 
 ## Evaluation
 ---
+Evaluasi untuk model _machine learning content-based filtering_ adalah menggunakan metrik _precision_ untuk menghitung jumlah presisi dari model sistem rekomendasi yang telah dibuat yaitu dengan formula sebagai berikut:
 
+<br>![image](https://user-images.githubusercontent.com/91611703/192021837-2fac44e9-3fdf-49a7-abf2-cfb3a4a05263.png)
+
+Berikut rincian dari hasil analisis:
+- **Rekomendasi Movie**
+  <br>_Feature_ movie
+  <br>```Documentaries, International Movies A willing team of chef and researcher go on a gastronomic adventure around the globe to weigh the benefit of using bug as a future food source. ```
+  
+  dengan hasil
+  
+  ```html
+    | index |         title         |                        listed_in                        |                                                                       description                                                                      |
+    |:-----:|:---------------------:|:-------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------:|
+    |     0 | She Did That          | Documentaries                                           | Go inside the life of extraordinary, black female entrepreneur as they discus building legacy and pioneering a new future for the next generation.     |
+    |     1 | Chasing Coral         | Documentaries                                           | Divers, scientist and photographer around the world mount an epic underwater campaign to document the disappearance of coral reefs.                    |
+    |     2 | The Ivory Game        | Documentaries                                           | Filmmakers infiltrate the corrupt global network of ivory trafficking, exposing poacher and dealer as African elephant edge closer to extinction.      |
+    |     3 | Operation Chromite    | Action & Adventure, Dramas, International Movies        | To pave the way for a major amphibious invasion, a team of South Korean spy go behind enemy line to steal a map of North Korean coastal defenses.      |
+    |     4 | The Tour              | Comedies, Documentaries, International Movies           | Miloš Knor brings comedian Lukáš Pavlásek, Tomáš Matonoha, Ester Kočičková, Michal Kavalčík and Richard Nedvěd on a tour around the Czech Republic.    |
+    |     5 | Bitcoin Heist         | Action & Adventure, Comedies, International Movies      | A unconventional, efficient Interpol special agent go rogue and assembles a team of thief to catch a shadowy hacker called "The Ghost."                |
+    |     6 | La Gran Ilusión       | International Movies                                    | Known as "El Mago Pop," illusionist Antonio Díaz shock and awe celebrity and bystander around the world with his mind-blowing performances.            |
+    |     7 | Addicted to Life      | Action & Adventure, Documentaries, International Movies | Chasing extreme challenges, athletic daredevil test their limit in various environment from giant wave to snowy slope around the world.                |
+    |     8 | Chappaquiddick        | Dramas                                                  | Senator Ted Kennedy watch his future unravel in the wake of an infamous car crash as family and ally vie to protect his reputation.                    |
+    |     9 | Madness in the Desert | Documentaries, International Movies                     | The story of making "Lagaan," one of the millennium's seminal Indian films, is told from the point of view of production team member Satyajit Bhatkal. |
+    ```
+    <br>Menggunakan _feature_ kita bisa membandingkan dengan hasil rekomendasi movie mana yang tidak relevan baik dengan `genre` ataupun `description`. Dari 10 hasil rekomendasi, dapat dilihat 1 dari 9 movie yang direkomendasikan memiliki `genre` Dramas dengan `description` yang tidak sesuai atau tidak relevan dengan salah satu _feature_ pada movie yang menjadi acuan. Dihitung menggunakan rumus _precision_ maka 
+    ```html
+    P = 9/10 = 90% presicion
+    ```
+    untuk model rekomendasi movie.
+  
+- **Rekomendasi TV Show**
+  <br>_Feature_ tv show
+  <br>```Kids' TV, Korean TV Shows What's in your fridge? In sunny Refrigerator Land, everyday ingredient transform into animal friend who love a good adventure. ```
+  
+  dengan hasil
+  ```html
+    | index |                 title                |                            listed_in                           |                                                                      description                                                                      |
+    |:-----:|:------------------------------------:|:--------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------:|
+    |     0 | Resurrection: Ertugrul               | International TV Shows, TV Action & Adventure, TV Dramas       | When a good deed unwittingly endangers his clan, a 13th-century Turkish warrior agrees to fight a sultan's enemy in exchange for new tribal land.     |
+    |     1 | Miniforce                            | Kids' TV, Korean TV Shows                                      | Four animal superheroes called the Miniforce transform into robot to protect small and defenseless creature from the hand of scheming villains.       |
+    |     2 | Twirlywoos                           | British TV Shows, Kids' TV                                     | The colorful and curious family of Twirlywoos bounce around their boat and visit new places, turning learning into adventure wherever they land.      |
+    |     3 | Vagabond                             | International TV Shows, Korean TV Shows, TV Action & Adventure | When his nephew dy in a plane crash, stunt man Cha Dal-geon resolve to find out what happened, with the help of covert operative Go Hae-ri.           |
+    |     4 | Crash Landing on You                 | International TV Shows, Korean TV Shows, Romantic TV Shows     | A paragliding mishap drop a South Korean heiress in North Korea – and into the life of an army officer, who decides he will help her hide.            |
+    |     5 | Arthdal Chronicles                   | International TV Shows, Korean TV Shows, TV Action & Adventure | In a mythical land called Arth, the inhabitant of the ancient city of Arthdal and its surrounding region vie for power as they build a new society.   |
+    |     6 | The Epic Tales of Captain Underpants | Kids' TV, TV Comedies                                          | Fourth-grade friend George and Harold have a shared love of prank and comic book – and turning their principal into an undies-wearing superhero.      |
+    |     7 | Buddy Thunderstruck                  | Kids' TV, TV Comedies                                          | Follow the outrageous, high-octane adventure of Buddy Thunderstruck, a truck-racing dog who brings gut and good time to the town of Greasepit.        |
+    |     8 | YooHoo to the Rescue                 | Kids' TV, Korean TV Shows                                      | In a series of magical missions, quick-witted YooHoo and his can-do crew travel the globe to help animal in need.                                     |
+    |     9 | Octonauts: Above & Beyond            | British TV Shows, Kids' TV                                     | The Octonauts expand their exploration beyond the sea — and onto land! With new ride and new friends, they'll protect any habitat and animal at risk. |
+    ```
+    <br>Menggunakan _feature_ kita bisa membandingkan dengan hasil rekomendasi movie mana yang tidak relevan baik dengan `genre` ataupun `description`. Dari 10 hasil rekomendasi, dapat dilihat semua hasil rekomendasi memiliki setidaknya satu _feature_ baik pada `genre` atau `description` yang sesuai atau relevan dengan salah satu _feature_ pada tv show yang menjadi acuan. Dihitung menggunakan rumus _precision_ maka 
+    ```html
+    P = 10/10 = 100% presicion
+    ```
+    untuk model rekomendasi tv show.
+    
+  
+## Conclusion
+---
+Model _machine learning_ dapat dibangun berdasarkan tipe yaitu Movie dan TV Show. Sistem rekomendasi _machine learning_ dibangun dengan metode _content-based filtering_ menggunakan dua fitur yaitu `genre` dan `description`. SIstem rekomendasi movie memiliki _precision_ sebesar 90% dan sistem rekomendasi tv show memiliki _precision_ sebesar 100%. Kedepannya, diharapkan sistem dapat dibangun menggunakan semua _feature_ yang ada pada dataset atau menggunakan metode clustering dengan algoritma K-Means.
 
 # Referensi (APA7)  :
 ---
